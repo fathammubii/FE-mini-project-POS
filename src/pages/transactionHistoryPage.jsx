@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import TableRiwayatTransaksi from "../component/tableRiwayatTransaksi";
 import axios from "axios";
 
-const riwayatTransasksi = () => {
+const TransactionHistoryPage = () => {
 
     const [transactions, setTransactions] = useState([]);
 
@@ -29,4 +29,4 @@ const riwayatTransasksi = () => {
     )
 };
 
-export default riwayatTransasksi;
+export default TransactionHistoryPage;

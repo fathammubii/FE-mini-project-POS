@@ -1,4 +1,6 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const tableRiwayatTransaksi = ({transactions}) => {
     return(
@@ -16,10 +18,10 @@ const tableRiwayatTransaksi = ({transactions}) => {
             {transactions.map((transactions, index) => (
                 <tr key={index}>
                     <td>{new Date(transactions.transaction_date).toLocaleString()}</td>
-                    <td>{index+1}</td>
+                    <td>{transactions.transaction_id}</td>
                     <td>{transactions.total_amount}</td>
                     <td>{transactions.total_pay}</td>
-                    <td><button>Detail Transaksi</button></td>
+                    <td><button><Link to={`/transaction-detail/${transactions.transaction_id}`}>Detail Transaksi</Link></button></td>
                 </tr>
 
             ))}

@@ -1,16 +1,19 @@
 import { useState } from 'react'
 import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import RiwayatTransasksi from './pages/riwayatTransaksi';
+import TransactionHistoryPage from './pages/transactionHistoryPage';
+import TransactionDetailPage from './pages/transactionDetailPage';
 
 function App() {
 
   return (
     <div>
-      <RiwayatTransasksi/>
-      {/* <Routes>
-        <Route path="/riwayat-transaksi" element={<RiwayatTransasksi/>}></Route>
-      </Routes> */}
+      <Router>
+        <Routes>
+          <Route path='/riwayat-transaksi' element={<TransactionHistoryPage />} />
+          <Route path='/transaction-detail/:id' element={<TransactionDetailPage />} />
+        </Routes>
+      </Router>
     </div>
   )
 }
