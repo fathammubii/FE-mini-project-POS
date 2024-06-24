@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import TableRiwayatTransaksi from "../component/tableRiwayatTransaksi";
+import TableTransactionHistory from "../component/tableTransactionHistory";
 import axios from "axios";
 
 const TransactionHistoryPage = () => {
@@ -23,7 +23,7 @@ const TransactionHistoryPage = () => {
     return (
         <div className="text-left">
             <h1>Riwayat Transaksi</h1>
-            <TableRiwayatTransaksi transactions={transactions}/>
+            <TableTransactionHistory transactions={transactions}/>
         </div>
 
     )

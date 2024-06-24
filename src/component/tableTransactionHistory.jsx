@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-const tableRiwayatTransaksi = ({transactions}) => {
+const tableTransactionHistory = ({transactions}) => {
     return(
         <table className='table-auto text-center w-full'>
         <thead>
@@ -32,4 +32,4 @@ const tableRiwayatTransaksi = ({transactions}) => {
     )
 }
 
-export default tableRiwayatTransaksi;
+export default tableTransactionHistory;
