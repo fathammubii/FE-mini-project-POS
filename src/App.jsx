@@ -1,13 +1,17 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import RiwayatTransasksi from './pages/riwayatTransaksi';
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <p>Hello World!</p>
+    <div>
+      <RiwayatTransasksi/>
+      {/* <Routes>
+        <Route path="/riwayat-transaksi" element={<RiwayatTransasksi/>}></Route>
+      </Routes> */}
+    </div>
   )
 }
 
