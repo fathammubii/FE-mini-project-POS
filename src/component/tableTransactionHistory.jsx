@@ -26,8 +26,8 @@ const TableTransactionHistory = ({ transactions, transactionsPerPage, totalTrans
                         <tr key={index}>
                             <td>{new Date(transaction.transaction_date).toLocaleString()}</td>
                             <td>{transaction.transaction_id}</td>
-                            <td>{transaction.total_amount}</td>
-                            <td>{transaction.total_pay}</td>
+                            <td>Rp. {transaction.total_amount}</td>
+                            <td>Rp. {transaction.total_pay}</td>
                             <td><button><Link to={`/transaction-detail/${transaction.transaction_id}`}>Detail Transaksi</Link></button></td>
                         </tr>
                     ))}

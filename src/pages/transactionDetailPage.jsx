@@ -114,7 +114,7 @@ const TransactionDetailPage = () => {
                                     {productDetails[detail.product_id] ? `Rp. ${productDetails[detail.product_id].price}` : 'Loading...'}
                                 </td>
                                 <td>{detail.quantity}</td>
-                                <td>Rp. {detail.sub_total}</td>
+                                <td><p className='proportional-nums'>Rp. {detail.sub_total}</p></td>
                             </tr>
                         ))}
                     </tbody>
