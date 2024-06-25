@@ -28,16 +28,10 @@ const TableProductList = ({ products, productsPerPage, totalProducts, paginate, 
                             <td>Rp. {product.price}</td>
                             <td>{product.categoryName}</td>
                             <td>
-                                <div className='flex'>
-                                    <div className='flex-auto '>
-                                        <button><Link to={`#`}>Detail</Link></button>
-                                    </div>
-                                    <div className='flex-auto '>
-                                        <button><Link to={`#`}>Edit</Link></button>
-                                    </div>
-                                    <div className='flex-auto '>
-                                        <button><Link to={`#`}>Hapus</Link></button>
-                                    </div>
+                                <div className='grid grid-cols-3'>
+                                    <button><Link to={`#`}>Detail</Link></button>
+                                    <button><Link to={`#`}>Edit</Link></button>
+                                    <button><Link to={`#`}>Hapus</Link></button>
                                 </div>
                             </td>
                         </tr>
