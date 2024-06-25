@@ -13,10 +13,78 @@ const TableProductList = ({ products, productsPerPage, totalProducts, paginate, 
             <table className='table-auto text-center w-full'>
                 <thead>
                     <tr>
-                        <th className='border-y-2 border-gray-200 p-2'>ID Produk</th>
-                        <th className='border-y-2 border-gray-200 p-2'>Nama Produk</th>
-                        <th className='border-y-2 border-gray-200 p-2'>Harga Satuan</th>
-                        <th className='border-y-2 border-gray-200 p-2'>Kategori</th>
+                        <th className='border-y-2 border-gray-200 p-2'>
+                            <div className="flex space-x-1 items-center">
+                                <div className='basis-1/5'></div>
+                                <div className='flex flex-col'>
+                                    <button className='p-0 bg-white rounded-none scale-75'>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
+                                        </svg>
+                                    </button>
+                                    <button className='p-0 bg-white rounded-none scale-75'>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div>ID Product</div>
+                            </div>
+                        </th>
+                        <th className='border-y-2 border-gray-200 p-2'>
+                            <div className="flex space-x-1 items-center">
+                                <div className='basis-1/5'></div>
+                                <div className='flex flex-col'>
+                                    <button className='p-0 bg-white rounded-none scale-75'>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
+                                        </svg>
+                                    </button>
+                                    <button className='p-0 bg-white rounded-none scale-75'>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div>Nama Produk</div>
+                            </div>
+                        </th>
+                        <th className='border-y-2 border-gray-200 p-2'>
+                            <div className="flex space-x-1 items-center">
+                                <div className='basis-1/5'></div>
+                                <div className='flex flex-col'>
+                                    <button className='p-0 bg-white rounded-none scale-75'>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
+                                        </svg>
+                                    </button>
+                                    <button className='p-0 bg-white rounded-none scale-75'>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div>Harga Satuan</div>
+                            </div>
+                        </th>
+                        <th className='border-y-2 border-gray-200 p-2'>
+                            <div className="flex space-x-1 items-center">
+                                <div className='basis-1/5'></div>
+                                <div className='flex flex-col'>
+                                    <button className='p-0 bg-white rounded-none scale-75'>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
+                                        </svg>
+                                    </button>
+                                    <button className='p-0 bg-white rounded-none scale-75'>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div>Kategori</div>
+                            </div>
+                        </th>
                         <th className='border-y-2 border-gray-200 p-2'>Action</th>
                     </tr>
                 </thead>
@@ -29,9 +97,9 @@ const TableProductList = ({ products, productsPerPage, totalProducts, paginate, 
                             <td>{product.categoryName}</td>
                             <td>
                                 <div className='grid grid-cols-3'>
-                                    <button><Link to={`#`}>Detail</Link></button>
-                                    <button><Link to={`#`}>Edit</Link></button>
-                                    <button><Link to={`#`}>Hapus</Link></button>
+                                    <button className='p-0 m-1'><Link to={`#`}>Detail</Link></button>
+                                    <button className='p-0 m-1'><Link to={`#`}>Edit</Link></button>
+                                    <button className='p-0 m-1'><Link to={`#`}>Hapus</Link></button>
                                 </div>
                             </td>
                         </tr>

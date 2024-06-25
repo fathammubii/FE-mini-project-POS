@@ -14,9 +14,9 @@ const TableTransactionHistory = ({ transactions, transactionsPerPage, totalTrans
             <table className='table-auto text-center w-full'>
                 <thead>
                     <tr>
-                        <th className='border-y-2 border-gray-200 p-2'>Tanggal Transaksi</th>
-                        <th className='border-y-2 border-gray-200 p-2 bg-gray-400'>
+                        <th className='border-y-2 border-gray-200 p-2'>
                             <div className="flex space-x-1 items-center">
+                                <div className='basis-1/5'></div>
                                 <div className='flex flex-col'>
                                     <button className='p-0 bg-white rounded-none scale-75'>
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -29,11 +29,63 @@ const TableTransactionHistory = ({ transactions, transactionsPerPage, totalTrans
                                         </svg>
                                     </button>
                                 </div>
-                                <span className=''>ID Transaksi</span>
+                                <div>Tanggal Transaksi</div>
                             </div>
                         </th>
-                        <th className='border-y-2 border-gray-200 p-2'>Total Harga</th>
-                        <th className='border-y-2 border-gray-200 p-2'>Total Bayar</th>
+                        <th className='border-y-2 border-gray-200 p-2'>
+                            <div className="flex space-x-1 items-center">
+                                <div className='basis-1/5'></div>
+                                <div className='flex flex-col'>
+                                    <button className='p-0 bg-white rounded-none scale-75'>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
+                                        </svg>
+                                    </button>
+                                    <button className='p-0 bg-white rounded-none scale-75'>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div>ID Transaksi</div>
+                            </div>
+                        </th>
+                        <th className='border-y-2 border-gray-200 p-2'>
+                            <div className="flex space-x-1 items-center">
+                                <div className='basis-1/5'></div>
+                                <div className='flex flex-col'>
+                                    <button className='p-0 bg-white rounded-none scale-75'>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
+                                        </svg>
+                                    </button>
+                                    <button className='p-0 bg-white rounded-none scale-75'>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div>Total Harga</div>
+                            </div>
+                        </th>
+                        <th className='border-y-2 border-gray-200 p-2'>
+                            <div className="flex space-x-1 items-center">
+                                <div className='basis-1/5'></div>
+                                <div className='flex flex-col'>
+                                    <button className='p-0 bg-white rounded-none scale-75'>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
+                                        </svg>
+                                    </button>
+                                    <button className='p-0 bg-white rounded-none scale-75'>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div>Total Bayar</div>
+                            </div>
+                        </th>
                         <th className='border-y-2 border-gray-200 p-2'>Action</th>
                     </tr>
                 </thead>
