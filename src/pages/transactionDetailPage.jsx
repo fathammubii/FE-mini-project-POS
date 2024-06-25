@@ -65,7 +65,7 @@ const TransactionDetailPage = () => {
                 <h1 className='flex-none text-left'>Detail Transaksi</h1>
                 <div className='grow'></div>
                 <div>
-                    <button><Link to={`/riwayat-transaksi`}>Kembali</Link></button>
+                    <button><Link to={`/riwayat-transaksi`}>{"< Kembali"}</Link></button>
                 </div>
             </div>
 
@@ -83,10 +83,10 @@ const TransactionDetailPage = () => {
                 <div>
                     {transaction && (
                         <>
-                            <div>{transaction.transaction_id}</div>
-                            <div>{new Date(transaction.transaction_date).toLocaleString()}</div>
-                            <div>{transaction.total_amount}</div>
-                            <div>{transaction.total_pay}</div>
+                            <div>: {transaction.transaction_id}</div>
+                            <div>: {new Date(transaction.transaction_date).toLocaleString()}</div>
+                            <div>: Rp. {transaction.total_amount}</div>
+                            <div>: Rp. {transaction.total_pay}</div>
                         </>
                     )}
                 </div>
