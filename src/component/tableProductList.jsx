@@ -98,7 +98,7 @@ const TableProductList = ({ products, productsPerPage, totalProducts, paginate, 
                             <td>
                                 <div className='grid grid-cols-3'>
                                     <button className='p-0 m-1'><Link to={`/detail-product/${product.productId}`}>Detail</Link></button>
-                                    <button className='p-0 m-1'><Link to={`#`}>Edit</Link></button>
+                                    <button className='p-0 m-1'><Link to={`/edit-product/${product.productId}`}>Edit</Link></button>
                                     <button className='p-0 m-1'><Link to={`#`}>Hapus</Link></button>
                                 </div>
                             </td>
