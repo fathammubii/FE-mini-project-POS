@@ -10,9 +10,9 @@ const EditProductPage = () => {
         title: '',
         price: '',
         image: '',
-        categoryId: '',
-        categoryName: ''
+        categoryId: ''
     });
+    const [categories, setCategories] = useState([]);
 
     useEffect(() => {
         const fetchProductDetails = async () => {
@@ -20,14 +20,29 @@ const EditProductPage = () => {
                 const response = await axios.get(`http://localhost:8080/pos/api/detailproduct/${id}`);
                 const productData = response.data.length > 0 ? response.data[0] : null;
                 if (productData) {
-                    setProductDetails(productData);
+                    setProductDetails({
+                        title: productData.title,
+                        price: productData.price,
+                        image: productData.image,
+                        categoryId: productData.categoryId
+                    });
                 }
             } catch (error) {
                 console.error('Error fetching product details:', error);
             }
         };
 
+        const fetchCategories = async () => {
+            try {
+                const response = await axios.get('http://localhost:8080/pos/api/category/list');
+                setCategories(response.data);
+            } catch (error) {
+                console.error('Error fetching categories:', error);
+            }
+        };
+
         fetchProductDetails();
+        fetchCategories();
     }, [id]);
 
     const handleChange = (e) => {
@@ -40,8 +55,14 @@ const EditProductPage = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const updatedProductDetails = {
+            title: productDetails.title,
+            image: productDetails.image,
+            price: parseFloat(productDetails.price),
+            categoryId: parseInt(productDetails.categoryId)
+        };
         try {
-            await axios.put(`http://localhost:8080/pos/api/updateproduct/${id}`, productDetails);
+            await axios.put(`http://localhost:8080/pos/api/updateproduct/${id}`, updatedProductDetails);
             alert('Product updated successfully!');
             navigate('/product-list');
         } catch (error) {
@@ -76,8 +97,20 @@ const EditProductPage = () => {
                         />
                     </div>
                     <div>
-                        <label>ID Kategori:</label>
-                        <input type="text" name="categoryId" value={productDetails.categoryId} onChange={handleChange} />
+                        <h4>Nama Kategori</h4>
+                        <select
+                            name="categoryId"
+                            value={productDetails.categoryId}
+                            onChange={handleChange}
+                            className='border rounded p-2 w-1/2'
+                        >
+                            <option value="">Pilih Kategori</option>
+                            {categories.map((category) => (
+                                <option key={category.categoryId} value={category.categoryId}>
+                                    {category.categoryName}
+                                </option>
+                            ))}
+                        </select>
                     </div>
                     <div>
                         <h4>URL Gambar</h4>
@@ -96,12 +129,6 @@ const EditProductPage = () => {
                         onChange={handleChange} 
                         className='border rounded p-2 w-1/2'
                         />
-                    </div>
-
-
-                    <div>
-                        <label>Nama Kategori:</label>
-                        <input type="text" name="categoryName" value={productDetails.categoryName} onChange={handleChange} />
                     </div>
 
                     <br></br>
