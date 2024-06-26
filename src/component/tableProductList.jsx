@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const TableProductList = ({ products, productsPerPage, totalProducts, paginate, currentPage }) => {
+const TableProductList = ({ products, productsPerPage, totalProducts, paginate, currentPage, onDelete }) => {
     const pageNumbers = [];
 
     for (let i = 1; i <= Math.ceil(totalProducts / productsPerPage); i++) {
@@ -99,7 +99,7 @@ const TableProductList = ({ products, productsPerPage, totalProducts, paginate, 
                                 <div className='grid grid-cols-3'>
                                     <button className='p-0 m-1'><Link to={`/detail-product/${product.productId}`}>Detail</Link></button>
                                     <button className='p-0 m-1'><Link to={`/edit-product/${product.productId}`}>Edit</Link></button>
-                                    <button className='p-0 m-1'><Link to={`#`}>Hapus</Link></button>
+                                    <button className='p-0 m-1'onClick={() => onDelete(product.productId)}>Hapus</button>
                                 </div>
                             </td>
                         </tr>
