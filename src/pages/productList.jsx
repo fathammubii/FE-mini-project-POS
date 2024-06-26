@@ -32,7 +32,7 @@ const ProductListPage = () => {
                 <h1 className='flex-none text-left'>Daftar Produk</h1>
                 <div className='grow'></div>
                 <div>
-                    <button><Link to={`#`}>+ Tambah Produk</Link></button>
+                    <button><Link to={`/add-product`}>+ Tambah Produk</Link></button>
                 </div>
             </div>
             <div>

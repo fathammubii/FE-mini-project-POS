@@ -6,6 +6,7 @@ import TransactionDetailPage from './pages/transactionDetailPage';
 import ProductListPage from './pages/productList';
 import DetailProductPage from './pages/detailProductPage';
 import EditProductPage from './pages/editProductPage';
+import AddProductPage from './pages/addProductPage';
 
 function App() {
 
@@ -17,7 +18,8 @@ function App() {
           <Route path='/transaction-detail/:id' element={<TransactionDetailPage />} />
           <Route path='/product-list' element={<ProductListPage/>}/>
           <Route path='/detail-product/:id' element={<DetailProductPage/>}/>
-          <Route path="/edit-product/:id" element={<EditProductPage />} />
+          <Route path='/edit-product/:id' element={<EditProductPage />} />
+          <Route path='/add-product' element={<AddProductPage/>} />
         </Routes>
       </Router>
     </div>

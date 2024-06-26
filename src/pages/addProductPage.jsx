@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-const EditProductPage = () => {
-    const { id } = useParams();
+const AddProductPage = () => {
     const navigate = useNavigate();
     const [productDetails, setProductDetails] = useState({
         title: '',
@@ -15,23 +14,6 @@ const EditProductPage = () => {
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
-        const fetchProductDetails = async () => {
-            try {
-                const response = await axios.get(`http://localhost:8080/pos/api/detailproduct/${id}`);
-                const productData = response.data.length > 0 ? response.data[0] : null;
-                if (productData) {
-                    setProductDetails({
-                        title: productData.title,
-                        price: productData.price,
-                        image: productData.image,
-                        categoryId: productData.categoryId
-                    });
-                }
-            } catch (error) {
-                console.error('Error fetching product details:', error);
-            }
-        };
-
         const fetchCategories = async () => {
             try {
                 const response = await axios.get('http://localhost:8080/pos/api/category/list');
@@ -41,9 +23,8 @@ const EditProductPage = () => {
             }
         };
 
-        fetchProductDetails();
         fetchCategories();
-    }, [id]);
+    }, []);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -55,29 +36,29 @@ const EditProductPage = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const updatedProductDetails = {
+        const newProductDetails = {
             title: productDetails.title,
             image: productDetails.image,
             price: parseFloat(productDetails.price),
             categoryId: parseInt(productDetails.categoryId)
         };
         try {
-            await axios.put(`http://localhost:8080/pos/api/updateproduct/${id}`, updatedProductDetails);
-            alert('Product updated successfully!');
+            await axios.post('http://localhost:8080/pos/api/addproduct', newProductDetails);
+            alert('Product added successfully!');
             navigate('/product-list');
         } catch (error) {
-            console.error('Error updating product:', error);
-            alert('Error updating product.');
+            console.error('Error adding product:', error);
+            alert('Error adding product.');
         }
     };
 
     return (
         <div>
             <div className='flex'>
-                <h1 className='flex-none text-left'>Form Produk</h1>
+                <h1 className='flex-none text-left'>Add Product Form</h1>
                 <div className='grow'></div>
                 <div>
-                    <button><Link to={`/product-list`}>{"< Kembali"}</Link></button>
+                    <button><Link to={`/product-list`}>{"< Back"}</Link></button>
                 </div>
             </div>
 
@@ -87,7 +68,7 @@ const EditProductPage = () => {
             <div className='text-left'>
                 <form onSubmit={handleSubmit}>
                     <div>
-                        <h4>Nama Produk</h4>
+                        <h4>Product Name</h4>
                         <input 
                         type="text" 
                         name="title" 
@@ -97,14 +78,14 @@ const EditProductPage = () => {
                         />
                     </div>
                     <div>
-                        <h4>Nama Kategori</h4>
+                        <h4>Category Name</h4>
                         <select
                             name="categoryId"
                             value={productDetails.categoryId}
                             onChange={handleChange}
                             className='border rounded p-2 w-1/2'
                         >
-                            <option value="">Pilih Kategori</option>
+                            <option value="">Select Category</option>
                             {categories.map((category) => (
                                 <option key={category.categoryId} value={category.categoryId}>
                                     {category.categoryName}
@@ -113,7 +94,7 @@ const EditProductPage = () => {
                         </select>
                     </div>
                     <div>
-                        <h4>URL Gambar</h4>
+                        <h4>Image URL</h4>
                         <input type="text" 
                         name="image" 
                         value={productDetails.image} 
@@ -122,7 +103,7 @@ const EditProductPage = () => {
                         />
                     </div>
                     <div>
-                        <h4>Harga Satuan</h4>
+                        <h4>Unit Price</h4>
                         <input type="number" 
                         name="price" 
                         value={productDetails.price} 
@@ -131,7 +112,7 @@ const EditProductPage = () => {
                         />
                     </div>
 
-                    <br></br>
+                    <br />
                     <button type="submit">{'Submit >'}</button>
                 </form>
             </div>
@@ -139,4 +120,4 @@ const EditProductPage = () => {
     );
 };
 
-export default EditProductPage;
+export default AddProductPage;
