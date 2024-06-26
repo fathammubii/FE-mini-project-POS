@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 const EditProductPage = () => {
     const { id } = useParams();
@@ -13,6 +16,18 @@ const EditProductPage = () => {
         categoryId: ''
     });
     const [categories, setCategories] = useState([]);
+
+    const validationSchema = yup.object().shape({
+        title: yup.string().required('Nama Produk wajib diisi'),
+        categoryId: yup.string().required('Kategori wajib dipilih'),
+        image: yup.string().required('URL Gambar wajib diisi').url('URL Gambar tidak valid'),
+        price: yup.number().typeError('Harga Satuan harus berupa angka').required('Harga Satuan wajib diisi').positive('Harga Satuan harus positif')
+    });
+
+    const { handleSubmit, register, formState: { errors }, reset } = useForm({
+        resolver: yupResolver(validationSchema),
+        defaultValues: productDetails
+    });
 
     useEffect(() => {
         const fetchProductDetails = async () => {
@@ -26,6 +41,7 @@ const EditProductPage = () => {
                         image: productData.image,
                         categoryId: productData.categoryId
                     });
+                    reset(productData); // Reset form to update with new default values
                 }
             } catch (error) {
                 console.error('Error fetching product details:', error);
@@ -43,7 +59,7 @@ const EditProductPage = () => {
 
         fetchProductDetails();
         fetchCategories();
-    }, [id]);
+    }, [id, reset]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -53,13 +69,12 @@ const EditProductPage = () => {
         });
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const onSubmit = async (data) => {
         const updatedProductDetails = {
-            title: productDetails.title,
-            image: productDetails.image,
-            price: parseFloat(productDetails.price),
-            categoryId: parseInt(productDetails.categoryId)
+            title: data.title,
+            image: data.image,
+            price: parseFloat(data.price),
+            categoryId: parseInt(data.categoryId)
         };
         try {
             await axios.put(`http://localhost:8080/pos/api/updateproduct/${id}`, updatedProductDetails);
@@ -85,23 +100,22 @@ const EditProductPage = () => {
             <hr />
 
             <div className='text-left'>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit(onSubmit)}>
                     <div>
                         <h4>Nama Produk</h4>
                         <input 
-                        type="text" 
-                        name="title" 
-                        value={productDetails.title} 
-                        onChange={handleChange} 
-                        className='border rounded p-2 w-1/2'
+                            type="text" 
+                            name="title" 
+                            {...register('title')} 
+                            className='border rounded p-2 w-1/2'
                         />
+                        <p className="text-red-500">{errors.title?.message}</p>
                     </div>
                     <div>
                         <h4>Nama Kategori</h4>
                         <select
                             name="categoryId"
-                            value={productDetails.categoryId}
-                            onChange={handleChange}
+                            {...register('categoryId')}
                             className='border rounded p-2 w-1/2'
                         >
                             <option value="">Pilih Kategori</option>
@@ -111,24 +125,27 @@ const EditProductPage = () => {
                                 </option>
                             ))}
                         </select>
+                        <p className="text-red-500">{errors.categoryId?.message}</p>
                     </div>
                     <div>
                         <h4>URL Gambar</h4>
-                        <input type="text" 
-                        name="image" 
-                        value={productDetails.image} 
-                        onChange={handleChange} 
-                        className='border rounded p-2 w-1/2'
+                        <input 
+                            type="text" 
+                            name="image" 
+                            {...register('image')} 
+                            className='border rounded p-2 w-1/2'
                         />
+                        <p className="text-red-500">{errors.image?.message}</p>
                     </div>
                     <div>
                         <h4>Harga Satuan</h4>
-                        <input type="number" 
-                        name="price" 
-                        value={productDetails.price} 
-                        onChange={handleChange} 
-                        className='border rounded p-2 w-1/2'
+                        <input 
+                            type="number" 
+                            name="price" 
+                            {...register('price')} 
+                            className='border rounded p-2 w-1/2'
                         />
+                        <p className="text-red-500">{errors.price?.message}</p>
                     </div>
 
                     <br></br>
