@@ -10,6 +10,7 @@ import AddProductPage from './pages/addProductPage';
 import HomePage from './pages/HomePage';
 import PaymentPage from './pages/PaymentPage';
 import LeftNavbar from './layout/leftNavbar';
+import Header from './layout/header';
 
 function App() {
 
@@ -17,8 +18,9 @@ function App() {
     <div>
 
       <Router>
+        <Header/>
         <LeftNavbar />
-        <div className='ml-16'>
+        <div className='ml-16 mt-8'>
           <Routes>
             <Route path='/' element={<HomePage />} />
             <Route path='/payment' element={<PaymentPage />} />
