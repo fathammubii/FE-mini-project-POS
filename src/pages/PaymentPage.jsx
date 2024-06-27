@@ -1,15 +1,32 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { addTransaction } from '../store/paymentSlice';
 
 const PaymentPage = () => {
-  const paymentState = useSelector(state => state.payment || []);
-  const orders = paymentState || []; 
+  const dispatch = useDispatch();
+  const paymentState = useSelector(state => state.payment.orders || []);
+  const orders = paymentState || [];
   const totalAmount = orders.reduce((acc, order) => acc + order.price * order.quantity, 0);
   const [paidAmount, setPaidAmount] = React.useState(0);
 
   const handlePaidAmountChange = (event) => {
     setPaidAmount(event.target.value);
   };
+
+  const handleOrder = () => {
+    const transactionData = {
+      totalAmount,
+      totalPay: paidAmount,
+      transactionDetailReqList: orders.map(order => ({
+        productId: order.productId,
+        quantity: order.quantity,
+        subtotal: order.price * order.quantity,
+      })),
+    };
+
+    dispatch(addTransaction(transactionData));
+  };
+
 
   return (
     <div className="flex p-8">
@@ -53,6 +70,7 @@ const PaymentPage = () => {
         <button
           className={`bg-blue-500 text-white p-4 w-full font-semibold ${paidAmount < totalAmount ? 'opacity-50 cursor-not-allowed' : ''}`}
           disabled={paidAmount < totalAmount}
+          onClick={handleOrder}
         >
           ORDER
         </button>
