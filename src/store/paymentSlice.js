@@ -19,6 +19,10 @@ const paymentSlice = createSlice({
     setPaymentOrders: (state, action) => {
       state.orders = action.payload;
     },
+    resetPayment: (state) => {
+      state.orders = [];
+      state.status = null;
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -35,6 +39,6 @@ const paymentSlice = createSlice({
   },
 });
 
-export const { setPaymentOrders } = paymentSlice.actions;
+export const { setPaymentOrders, resetPayment } = paymentSlice.actions;
 
 export default paymentSlice.reducer;

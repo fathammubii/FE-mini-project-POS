@@ -1,16 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addTransaction } from '../store/paymentSlice';
+import { useNavigate } from 'react-router-dom';
+import { addTransaction, resetPayment } from '../store/paymentSlice';
 
 const PaymentPage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const paymentState = useSelector(state => state.payment.orders || []);
+  const status = useSelector(state => state.payment.status);
   const orders = paymentState || [];
   const totalAmount = orders.reduce((acc, order) => acc + order.price * order.quantity, 0);
-  const [paidAmount, setPaidAmount] = React.useState(0);
+  const [paidAmount, setPaidAmount] = useState(0);
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
   const handlePaidAmountChange = (event) => {
-    setPaidAmount(event.target.value);
+    setPaidAmount(parseFloat(event.target.value));
   };
 
   const handleOrder = () => {
@@ -27,6 +31,16 @@ const PaymentPage = () => {
     dispatch(addTransaction(transactionData));
   };
 
+  useEffect(() => {
+    if (status === 'success') {
+      setShowSuccessPopup(true);
+      setTimeout(() => {
+        setShowSuccessPopup(false);
+        dispatch(resetPayment());
+        navigate('/');
+      }, 2000); // Popup setelah 2 detik
+    }
+  }, [status, navigate, dispatch]);
 
   return (
     <div className="flex p-8">
@@ -75,6 +89,14 @@ const PaymentPage = () => {
           ORDER
         </button>
       </div>
+      {showSuccessPopup && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-8 rounded shadow-lg">
+            <h2 className="text-2xl font-semibold mb-4">Pembelian Sukses!</h2>
+            <p>Terima kasih atas pembelian Anda.</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
