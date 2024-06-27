@@ -28,9 +28,12 @@ const ordersSlice = createSlice({
                 order.quantity -= 1;
             }
         },
+        resetOrders: () => {
+            return []; // Mengembalikan state ke array kosong
+          }
     },
 });
 
-export const { addOrder, removeOrder, incrementQuantity, decrementQuantity } = ordersSlice.actions;
+export const { addOrder, removeOrder, incrementQuantity, decrementQuantity, resetOrders } = ordersSlice.actions;
 
 export default ordersSlice.reducer;

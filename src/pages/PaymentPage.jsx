@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { addTransaction, resetPayment } from '../store/paymentSlice';
+import { resetOrders } from '../store/ordersSlice';
 
 const PaymentPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const paymentState = useSelector(state => state.payment.orders || []);
   const status = useSelector(state => state.payment.status);
-  const orders = paymentState || [];
+  const orders = useSelector(state => state.orders);
   const totalAmount = orders.reduce((acc, order) => acc + order.price * order.quantity, 0);
   const [paidAmount, setPaidAmount] = useState(0);
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
@@ -37,7 +38,8 @@ const PaymentPage = () => {
       setTimeout(() => {
         setShowSuccessPopup(false);
         dispatch(resetPayment());
-        navigate('/');
+        dispatch(resetOrders()); // Reset orders setelah transaksi berhasil
+        navigate('/'); 
       }, 2000); // Popup setelah 2 detik
     }
   }, [status, navigate, dispatch]);
