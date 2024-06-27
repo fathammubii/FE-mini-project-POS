@@ -6,7 +6,7 @@ import OrderItem from './OrderItem';
 import { setPaymentOrders } from '../store/paymentSlice';
 
 const OrderList = () => {
-  const orders = useSelector(state => state.orders);
+  const orders = useSelector(state => state.orders || []); // Gunakan fallback jika state.orders undefined
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

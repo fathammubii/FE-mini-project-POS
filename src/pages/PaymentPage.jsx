@@ -1,15 +1,17 @@
-// pages/PaymentPage.jsx
 import React from 'react';
 import { useSelector } from 'react-redux';
 
 const PaymentPage = () => {
-  const orders = useSelector(state => state.payment || []); // Gunakan fallback jika state.payment undefined
+  const paymentState = useSelector(state => state.payment || []); // Ensure state.payment is correctly set
+  const orders = paymentState.orders || []; // Assuming orders is nested within payment state
   const totalAmount = orders.reduce((acc, order) => acc + order.price * order.quantity, 0);
   const [paidAmount, setPaidAmount] = React.useState(0);
 
   const handlePaidAmountChange = (event) => {
     setPaidAmount(event.target.value);
   };
+
+  console.log(paymentState); // Use console.log to inspect state structure
 
   return (
     <div className="flex p-8">
