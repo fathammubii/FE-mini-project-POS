@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchProducts } from '../store/productsSlice';
+import { fetchProducts, fetchProductsByCategory } from '../store/productsSlice';
 import ProductCard from './ProductCard';
 
 const ProductList = () => {
@@ -10,19 +10,15 @@ const ProductList = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [sortBy, setSortBy] = useState('');
   const [sortOrder, setSortOrder] = useState('asc'); // default ascending
-  const [sorting, setSorting] = useState(false);
+  const [categoryId, setCategoryId] = useState(null); // category ID for filtering
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        await dispatch(fetchProducts({ sortBy, sortOrder }));
-      } catch (error) {
-        console.error('Error fetching products:', error);
-      }
-    };
-
-    fetchData();
-  }, [dispatch, sortBy, sortOrder]);
+    if (categoryId) {
+      dispatch(fetchProductsByCategory(categoryId));
+    } else {
+      dispatch(fetchProducts({ sortBy, sortOrder }));
+    }
+  }, [dispatch, sortBy, sortOrder, categoryId]);
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
@@ -31,13 +27,11 @@ const ProductList = () => {
   const handleSortChange = (event) => {
     const sortByValue = event.target.value;
     setSortBy(sortByValue);
-    setSorting(true);
   };
 
-  const handleOrderChange = (event) => {
-    const sortOrderValue = event.target.value;
-    setSortOrder(sortOrderValue);
-    setSorting(true);
+  const handleCategoryChange = (event) => {
+    const categoryIdValue = event.target.value;
+    setCategoryId(categoryIdValue === 'all' ? null : categoryIdValue);
   };
 
   const filteredProducts = products.filter(product =>
@@ -45,9 +39,9 @@ const ProductList = () => {
   );
 
   // Default sort by id if no sorting is applied
-  let sortedProducts = sorting ? [...filteredProducts] : [...products];
+  let sortedProducts = [...filteredProducts];
 
-  // Apply sorting by title or price
+  // Apply sorting by title or price with ascending or descending order
   if (sortBy === 'title') {
     sortedProducts.sort((a, b) => {
       const compareValue = a.title.localeCompare(b.title);
@@ -74,9 +68,16 @@ const ProductList = () => {
           <option value="title">Title</option>
           <option value="price">Price</option>
         </select>
-        <select value={sortOrder} onChange={handleOrderChange} className="border p-2">
+        <select value={sortOrder} onChange={handleSortChange} className="border p-2 mr-2">
           <option value="asc">Ascending</option>
           <option value="desc">Descending</option>
+        </select>
+        <label className="mr-2">Filter by Category:</label>
+        <select value={categoryId || 'all'} onChange={handleCategoryChange} className="border p-2">
+          <option value="all">All Categories</option>
+          <option value="1">Category 1</option>
+          <option value="2">Category 2</option>
+          {/* Add more options as needed */}
         </select>
       </div>
       <input
