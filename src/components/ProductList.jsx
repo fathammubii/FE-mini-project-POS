@@ -45,10 +45,15 @@ const ProductList = () => {
         setSorting(true);
     };
 
-    const handleCategoryChange = (event) => {
-        const categoryIdValue = event.target.value;
-        setCategoryId(categoryIdValue === 'all' ? null : categoryIdValue);
+    const handleCategoryChange = (categoryId) => {
+        setCategoryId(categoryId === 'all' ? null : categoryId);
     };
+
+    const categories = [
+        { id: 'all', name: 'All Categories' },
+        { id: '1', name: 'Benda' },
+        { id: '2', name: 'Kendaraan' }
+    ];
 
     const filteredProducts = products.filter(product =>
         product.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -88,12 +93,17 @@ const ProductList = () => {
                     <option value="asc">Ascending</option>
                     <option value="desc">Descending</option>
                 </select>
-                <label className="mr-2">Filter by Category:</label>
-                <select value={categoryId || 'all'} onChange={handleCategoryChange} className="border p-2">
-                    <option value="all">All Categories</option>
-                    <option value="1">Benda</option>
-                    <option value="2">Kendaraan</option>
-                </select>
+                <div>
+                    {categories.map(category => (
+                        <button
+                            key={category.id}
+                            onClick={() => handleCategoryChange(category.id)}
+                            className={`border p-2 m-1 ${categoryId === category.id || (categoryId === null && category.id === 'all') ? 'bg-blue-500 text-white' : 'bg-white text-black'}`}
+                        >
+                            {category.name}
+                        </button>
+                    ))}
+                </div>
             </div>
             <input
                 type="text"
