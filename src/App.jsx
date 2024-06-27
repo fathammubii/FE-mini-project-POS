@@ -7,8 +7,8 @@ import ProductListPage from './pages/productList';
 import DetailProductPage from './pages/detailProductPage';
 import EditProductPage from './pages/editProductPage';
 import AddProductPage from './pages/addProductPage';
-import ProductListHome from './pages/ProductListPage';
-import OrderPage from './pages/OrderPage';
+import HomePage from './pages/HomePage';
+import PaymentPage from './pages/PaymentPage';
 
 function App() {
 
@@ -16,8 +16,8 @@ function App() {
     <div>
       <Router>
         <Routes>
-          <Route path='/' element={<ProductListHome/>}/>
-          <Route path='/order-page' element={<OrderPage/>} />
+          <Route path='/' element={<HomePage/>}/>
+          <Route path='/payment' element={<PaymentPage/>}/>
           <Route path='/riwayat-transaksi' element={<TransactionHistoryPage />} />
           <Route path='/transaction-detail/:id' element={<TransactionDetailPage />} />
           <Route path='/product-list' element={<ProductListPage/>}/>

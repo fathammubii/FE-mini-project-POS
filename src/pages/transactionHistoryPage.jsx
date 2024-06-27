@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import TableTransactionHistory from "../component/tableTransactionHistory";
+import TableTransactionHistory from "../components/tableTransactionHistory";
 import axios from "axios";
 
 const TransactionHistoryPage = () => {

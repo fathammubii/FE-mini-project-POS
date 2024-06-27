@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import TableProductList from "../component/tableProductList";
+import TableProductList from "../components/tableProductList";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
