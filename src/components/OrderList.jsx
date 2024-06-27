@@ -1,11 +1,14 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { removeOrder, incrementQuantity, decrementQuantity } from '../store/ordersSlice';
 import OrderItem from './OrderItem';
+import { setPaymentOrders } from '../store/paymentSlice';
 
 const OrderList = () => {
   const orders = useSelector(state => state.orders);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleRemove = (productId) => {
     dispatch(removeOrder(productId));
@@ -17,6 +20,11 @@ const OrderList = () => {
 
   const handleDecrement = (productId) => {
     dispatch(decrementQuantity(productId));
+  };
+
+  const handlePayment = () => {
+    dispatch(setPaymentOrders(orders)); // Simpan data pesanan ke halaman pembayaran
+    navigate('/payment'); // Navigasi ke halaman pembayaran
   };
 
   const totalPrice = orders.reduce((total, order) => total + order.price * order.quantity, 0);
@@ -36,7 +44,7 @@ const OrderList = () => {
         <span className="font-bold">Total</span>
         <span className="font-bold">Rp. {totalPrice}</span>
       </div>
-      <button className="mt-4 bg-green-500 text-white px-4 py-2 rounded">BAYAR</button>
+      <button onClick={handlePayment} className="mt-4 bg-green-500 text-white px-4 py-2 rounded">BAYAR</button>
     </div>
   );
 };
