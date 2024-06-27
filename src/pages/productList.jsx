@@ -35,7 +35,7 @@ const ProductListPage = () => {
 
   const confirmDeleteProduct = async () => {
     try {
-      await axios.delete(`http://localhost:8080/pos/api/deleteproduct/${productToDelete}`);
+      await axios.post(`http://localhost:8080/pos/api/deleteproduct/${productToDelete}`);
       setProducts(products.filter(product => product.productId !== productToDelete));
       setShowDeleteConfirmation(false);
       alert('Product deleted successfully!');

@@ -38,7 +38,8 @@ const DetailProductPage = () => {
             <hr />
             <br />
             <div className="grid grid-cols-3 text-left">
-                <div className="flex flex-col">
+
+                <div className="flex flex-col space-y-2">
                     <div>ID Produk</div>
                     <div>Nama Produk</div>
                     <div>Harga Satuan</div>
@@ -46,17 +47,19 @@ const DetailProductPage = () => {
                     <div>ID Kategori</div>
                     <div>Nama Kategori</div>
                 </div>
-                <div>
+                <div className="flex flex-col space-y-2">
                     <div>: {productDetails.productId}</div>
                     <div>: {productDetails.title}</div>
                     <div>: Rp. {productDetails.price}</div>
-                    <div>: {productDetails.image}</div>
+                    <div className="truncate hover:text-balance">: {productDetails.image}</div>
                     <div>: {productDetails.categoryId}</div>
                     <div>: {productDetails.categoryName}</div>
                 </div>
-                <div>
-                    <img src='#' alt='gambar-product'></img>
+
+                <div className="ml-auto items-center justify-center">
+                    <img src={productDetails.image} alt='gambar-product' className="max-h-40" />
                 </div>
+
             </div>
         </div>
     );
