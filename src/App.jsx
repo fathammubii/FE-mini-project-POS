@@ -9,22 +9,27 @@ import EditProductPage from './pages/editProductPage';
 import AddProductPage from './pages/addProductPage';
 import HomePage from './pages/HomePage';
 import PaymentPage from './pages/PaymentPage';
+import LeftNavbar from './layout/leftNavbar';
 
 function App() {
 
   return (
     <div>
+
       <Router>
-        <Routes>
-          <Route path='/' element={<HomePage/>}/>
-          <Route path='/payment' element={<PaymentPage/>}/>
-          <Route path='/riwayat-transaksi' element={<TransactionHistoryPage />} />
-          <Route path='/transaction-detail/:id' element={<TransactionDetailPage />} />
-          <Route path='/product-list' element={<ProductListPage/>}/>
-          <Route path='/detail-product/:id' element={<DetailProductPage/>}/>
-          <Route path='/edit-product/:id' element={<EditProductPage />} />
-          <Route path='/add-product' element={<AddProductPage/>} />
-        </Routes>
+        <LeftNavbar />
+        <div className='ml-16'>
+          <Routes>
+            <Route path='/' element={<HomePage />} />
+            <Route path='/payment' element={<PaymentPage />} />
+            <Route path='/riwayat-transaksi' element={<TransactionHistoryPage />} />
+            <Route path='/transaction-detail/:id' element={<TransactionDetailPage />} />
+            <Route path='/product-list' element={<ProductListPage />} />
+            <Route path='/detail-product/:id' element={<DetailProductPage />} />
+            <Route path='/edit-product/:id' element={<EditProductPage />} />
+            <Route path='/add-product' element={<AddProductPage />} />
+          </Routes>
+        </div>
       </Router>
     </div>
   )
