@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const paymentSlice = createSlice({
   name: 'payment',
-  initialState: [], // Pastikan initialState adalah array kosong
+  initialState: [],
   reducers: {
     setPaymentOrders: (state, action) => {
       return action.payload;

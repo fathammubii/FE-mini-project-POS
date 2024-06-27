@@ -16,7 +16,7 @@ const ProductCard = ({ product }) => {
                 <h3 className="font-bold">{product.title}</h3>
                 <p className="text-gray-600">Rp. {product.price}</p>
                 <button onClick={handleAddOrder} className="mt-2 bg-blue-500 text-white px-2 py-1 rounded">
-                    Tambah
+                    Add
                 </button>
             </div>
         </div>

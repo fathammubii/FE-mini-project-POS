@@ -2,16 +2,14 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 const PaymentPage = () => {
-  const paymentState = useSelector(state => state.payment || []); // Ensure state.payment is correctly set
-  const orders = paymentState.orders || []; // Assuming orders is nested within payment state
+  const paymentState = useSelector(state => state.payment || []);
+  const orders = paymentState || []; 
   const totalAmount = orders.reduce((acc, order) => acc + order.price * order.quantity, 0);
   const [paidAmount, setPaidAmount] = React.useState(0);
 
   const handlePaidAmountChange = (event) => {
     setPaidAmount(event.target.value);
   };
-
-  console.log(paymentState); // Use console.log to inspect state structure
 
   return (
     <div className="flex p-8">
@@ -33,7 +31,7 @@ const PaymentPage = () => {
           </div>
         ))}
       </div>
-      <div className="w-1/3 p-4 border-l-2 border-gray-200">
+      <div className="w-1/3 p-4 border-l-2 border-gray-600">
         <h2 className="text-xl font-semibold mb-4">Pembayaran</h2>
         <div className="flex justify-between mb-4">
           <p>Total</p>
