@@ -50,7 +50,12 @@ const PaymentPage = () => {
           <p>Kembalian</p>
           <p className="font-semibold">Rp. {paidAmount - totalAmount}</p>
         </div>
-        <button className="bg-blue-500 text-white p-4 w-full font-semibold">SELESAIKAN</button>
+        <button
+          className={`bg-blue-500 text-white p-4 w-full font-semibold ${paidAmount < totalAmount ? 'opacity-50 cursor-not-allowed' : ''}`}
+          disabled={paidAmount < totalAmount}
+        >
+          ORDER
+        </button>
       </div>
     </div>
   );
