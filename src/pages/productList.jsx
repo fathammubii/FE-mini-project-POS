@@ -41,7 +41,8 @@ const ProductListPage = () => {
       alert('Product deleted successfully!');
     } catch (error) {
       console.error('Error deleting product:', error);
-      alert('Failed to delete product.');
+      alert('Failed to delete product: Product pernah dibeli');
+      setShowDeleteConfirmation(false);
     }
   };
 

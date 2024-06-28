@@ -93,26 +93,30 @@ const ProductList = () => {
                     <option value="asc">Ascending</option>
                     <option value="desc">Descending</option>
                 </select>
+
                 <div>
-                    {categories.map(category => (
-                        <button
-                            key={category.id}
-                            onClick={() => handleCategoryChange(category.id)}
-                            className={`border p-2 m-1 ${categoryId === category.id || (categoryId === null && category.id === 'all') ? 'bg-blue-500 text-white' : 'bg-white text-black'}`}
-                        >
-                            {category.name}
-                        </button>
-                    ))}
+                    <input
+                        type="text"
+                        placeholder="Search products..."
+                        value={searchTerm}
+                        onChange={handleSearchChange}
+                        className="border p-2 mb-4"
+                    />
                 </div>
             </div>
-            <input
-                type="text"
-                placeholder="Search products..."
-                value={searchTerm}
-                onChange={handleSearchChange}
-                className="border p-2 mb-4"
-            />
-            <div className="grid grid-cols-3 gap-4 overflow-y-auto h-64">
+            <div>
+                {categories.map(category => (
+                    <button
+                        key={category.id}
+                        onClick={() => handleCategoryChange(category.id)}
+                        className={`border p-2 m-1 ${categoryId === category.id || (categoryId === null && category.id === 'all') ? 'bg-blue-500 text-white' : 'bg-white text-black'}`}
+                    >
+                        {category.name}
+                    </button>
+                ))}
+            </div>
+
+            <div className="grid grid-cols-3 gap-4 overflow-y-auto h-[500px]">
                 {sortedProducts.map(product => (
                     <ProductCard key={product.productId} product={product} />
                 ))}
