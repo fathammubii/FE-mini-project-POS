@@ -12,6 +12,7 @@ import PaymentPage from './pages/PaymentPage';
 import LeftNavbar from './layout/leftNavbar';
 import Header from './layout/header';
 import CategoryListPage from './pages/CategoryList';
+import AddCategoryPage from './pages/addCategoryPage';
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
             <Route path='/edit-product/:id' element={<EditProductPage />} />
             <Route path='/add-product' element={<AddProductPage />} />
             <Route path='/category-list' element={<CategoryListPage/>} />
+            <Route path='/add-category' element={<AddCategoryPage/>} />
           </Routes>
         </div>
       </Router>

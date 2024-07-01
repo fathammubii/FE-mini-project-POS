@@ -28,7 +28,7 @@ const CategoryList = () => {
                 <h1 className='flex-none text-left'>Daftar Kategori</h1>
                 <div className='grow'></div>
                 <div>
-                    <button><Link to={`/`}>+ Tambah Kategori</Link></button>
+                    <button><Link to={`/add-category`}>+ Tambah Kategori</Link></button>
                 </div>
             </div>
             <div>

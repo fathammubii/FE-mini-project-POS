@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const ordersSlice = createSlice({
     name: 'orders',
-    initialState: [], // Pastikan initialState adalah array kosong
+    initialState: [],
     reducers: {
         addOrder: (state, action) => {
             const existingOrder = state.find(order => order.productId === action.payload.productId);
