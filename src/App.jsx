@@ -14,6 +14,7 @@ import Header from './layout/header';
 import CategoryListPage from './pages/CategoryList';
 import AddCategoryPage from './pages/addCategoryPage';
 import DetailCategoryPage from './pages/detailCategoryPage';
+import EditCategoryPage from './pages/editCategoryPage';
 
 function App() {
 
@@ -36,6 +37,7 @@ function App() {
             <Route path='/category-list' element={<CategoryListPage/>} />
             <Route path='/add-category' element={<AddCategoryPage/>} />
             <Route path='/detail-category/:id' element={<DetailCategoryPage/>}/>
+            <Route path='/edit-category/:id' element={<EditCategoryPage/>}/>
           </Routes>
         </div>
       </Router>

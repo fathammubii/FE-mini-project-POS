@@ -66,7 +66,7 @@ const CategoryTable = ({ categories, onCategoryDelete }) => {
                             <td>
                                 <div className='grid grid-cols-3'>
                                     <button className='p-0 m-1'><Link to={`/detail-category/${category.categoryId}`}>Detail</Link></button>
-                                    <button className='p-0 m-1'><Link to={`/`}>Edit</Link></button>
+                                    <button className='p-0 m-1'><Link to={`/edit-category/${category.categoryId}`}>Edit</Link></button>
                                     <button className='p-0 m-1' onClick={() => handleDelete(category.categoryId, category.categoryName)}>Hapus</button>
                                 </div>
                             </td>
