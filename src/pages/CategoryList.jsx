@@ -14,6 +14,10 @@ const CategoryList = () => {
         dispatch(fetchCategories());
     }, [dispatch]);
 
+    const handleCategoryDelete = () => {
+        dispatch(fetchCategories());
+    };
+
     if (status === 'loading') {
         return <div>Loading...</div>;
     }
@@ -32,7 +36,7 @@ const CategoryList = () => {
                 </div>
             </div>
             <div>
-                <CategoryTable categories={categories} />
+                <CategoryTable categories={categories} onCategoryDelete={handleCategoryDelete} />
             </div>
         </div>
     );
