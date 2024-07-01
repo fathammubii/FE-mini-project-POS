@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 
 const CategoryTable = ({ categories, onCategoryDelete }) => {
     const [productCounts, setProductsCounts] = useState({});
+    const [categoryToDelete, setCategoryToDelete] = useState(null);
+    const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
 
     useEffect(() => {
         const fetchProductCounts = async () => {
@@ -21,9 +23,16 @@ const CategoryTable = ({ categories, onCategoryDelete }) => {
         fetchProductCounts();
     }, [categories]);
 
-    const handleDelete = async (categoryId, categoryName) => {
+    const handleDelete = (categoryId, categoryName) => {
+        setCategoryToDelete({ id: categoryId, name: categoryName });
+        setShowDeleteConfirmation(true);
+    };
+
+    const confirmDeleteCategory = async () => {
+        const { id, name: categoryName } = categoryToDelete;
         try {
-            await axios.post(`http://localhost:8080/pos/api/category/deletecategory/${categoryId}`);
+            await axios.post(`http://localhost:8080/pos/api/category/deletecategory/${id}`);
+            setShowDeleteConfirmation(false);
             alert(`Category ${categoryName} deleted successfully`);
             onCategoryDelete();
         } catch (error) {
@@ -32,6 +41,8 @@ const CategoryTable = ({ categories, onCategoryDelete }) => {
             } else {
                 alert(`Failed to delete category ${categoryName}`);
             }
+            setShowDeleteConfirmation(false);
+            
         }
     };
 
@@ -63,6 +74,25 @@ const CategoryTable = ({ categories, onCategoryDelete }) => {
                     ))}
                 </tbody>
             </table>
+            {showDeleteConfirmation && (
+                <div className='fixed z-10 inset-0 overflow-y-auto'>
+                    <div className='flex items-center justify-center min-h-screen px-4 text-center'>
+                        <div className='fixed inset-0 bg-black opacity-50'></div>
+                        <div className='relative z-10 bg-white p-6 rounded-lg'>
+                            <h2 className='mb-4'>Delete Category</h2>
+                            <p className='mb-4'>Are you sure you want to delete {categoryToDelete.name}?</p>
+                            <div className='flex justify-center space-x-4'>
+                                <button className='bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded' onClick={confirmDeleteCategory}>
+                                    Delete
+                                </button>
+                                <button className='bg-gray-300 hover:bg-gray-400 text-gray-800 px-4 py-2 rounded' onClick={() => setShowDeleteConfirmation(false)}>
+                                    Cancel
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
