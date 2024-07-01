@@ -13,6 +13,7 @@ import LeftNavbar from './layout/leftNavbar';
 import Header from './layout/header';
 import CategoryListPage from './pages/CategoryList';
 import AddCategoryPage from './pages/addCategoryPage';
+import DetailCategoryPage from './pages/detailProductPage copy';
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
             <Route path='/add-product' element={<AddProductPage />} />
             <Route path='/category-list' element={<CategoryListPage/>} />
             <Route path='/add-category' element={<AddCategoryPage/>} />
+            <Route path='/detail-category/:id' element={<DetailCategoryPage/>}/>
           </Routes>
         </div>
       </Router>
