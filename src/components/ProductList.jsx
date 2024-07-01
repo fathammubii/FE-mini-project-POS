@@ -52,7 +52,8 @@ const ProductList = () => {
     const categories = [
         { id: 'all', name: 'All Categories' },
         { id: '1', name: 'Benda' },
-        { id: '2', name: 'Kendaraan' }
+        { id: '2', name: 'Kendaraan' },
+        { id: '11', name: 'Baju'}
     ];
 
     const filteredProducts = products.filter(product =>
@@ -82,19 +83,19 @@ const ProductList = () => {
 
     return (
         <div>
-            <div className="flex mb-4">
-                <label className="mr-2">Sort by:</label>
-                <select value={sortBy} onChange={handleSortChange} className="border p-2 mr-2">
+            <div className="flex mb-4 ">
+                <h4 className="mr-2">Sort by:</h4>
+                <select value={sortBy} onChange={handleSortChange} className="border">
                     <option value="">Default</option>
                     <option value="title">Title</option>
                     <option value="price">Price</option>
                 </select>
-                <select value={sortOrder} onChange={handleOrderChange} className="border p-2">
+                <select value={sortOrder} onChange={handleOrderChange} className="border">
                     <option value="asc">Ascending</option>
                     <option value="desc">Descending</option>
                 </select>
 
-                <div>
+                <div className='flex-auto'>
                     <input
                         type="text"
                         placeholder="Search products..."
