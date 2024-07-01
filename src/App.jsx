@@ -13,7 +13,7 @@ import LeftNavbar from './layout/leftNavbar';
 import Header from './layout/header';
 import CategoryListPage from './pages/CategoryList';
 import AddCategoryPage from './pages/addCategoryPage';
-import DetailCategoryPage from './pages/detailProductPage copy';
+import DetailCategoryPage from './pages/detailCategoryPage';
 
 function App() {
 
