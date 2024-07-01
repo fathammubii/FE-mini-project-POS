@@ -11,6 +11,7 @@ import HomePage from './pages/HomePage';
 import PaymentPage from './pages/PaymentPage';
 import LeftNavbar from './layout/leftNavbar';
 import Header from './layout/header';
+import CategoryListPage from './pages/CategoryList';
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
             <Route path='/detail-product/:id' element={<DetailProductPage />} />
             <Route path='/edit-product/:id' element={<EditProductPage />} />
             <Route path='/add-product' element={<AddProductPage />} />
+            <Route path='/category-list' element={<CategoryListPage/>} />
           </Routes>
         </div>
       </Router>
